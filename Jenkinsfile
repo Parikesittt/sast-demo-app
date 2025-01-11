@@ -8,7 +8,7 @@ pipeline {
     }
    stage('Install Dependencies') {
      steps {
-       sh '/usr/local/bin/pip install bandit'
+       sh 'python -m pip install bandit'
      }
    }
    stage('SAST Analysis') {
