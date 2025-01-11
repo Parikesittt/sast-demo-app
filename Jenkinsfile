@@ -17,4 +17,5 @@ pipeline {
        recordIssues tools: [bandit(pattern: 'bandit-output.xml')]
      }
    }
+  }
 }
