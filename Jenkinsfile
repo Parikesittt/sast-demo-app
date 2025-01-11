@@ -8,13 +8,13 @@ pipeline {
     }
    stage('Install Dependencies') {
      steps {
-       sh 'pip install bandit'
+       sh 'pipx install bandit'
      }
    }
    stage('SAST Analysis') {
      steps {
-       sh 'bandit -f xml -o bandit-output.xml -r . || true'
-       recordIssues tools: [bandit(pattern: 'bandit-output.xml')]
+       sh 'python3 -m bandit -f xml -o bandit-output.xml -r . || true'
+       recordIssues tools: [sarif(pattern: 'bandit-output.xml')]
      }
    }
   }
