@@ -14,7 +14,7 @@ pipeline {
    stage('SAST Analysis') {
      steps {
        bat 'python -m bandit -f xml -o bandit-output.json -r . || exit 0'
-       recordIssues tools: [sarif(pattern: 'bandit-output.json')]
+       recordIssues tools: [genericIssues(parser: 'JSON', pattern: 'bandit-output.json')]
      }
    }
   }
