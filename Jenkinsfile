@@ -13,8 +13,8 @@ pipeline {
    }
    stage('SAST Analysis') {
      steps {
-       bat 'python -m bandit -f xml -o bandit-output.xml -r . || exit 0'
-       recordIssues tools: [bandit(pattern: 'bandit-output.xml')]
+       bat 'python -m bandit -f xml -o bandit-output.json -r . || exit 0'
+       recordIssues tools: [sarif(pattern: 'bandit-output.json')]
      }
    }
   }
