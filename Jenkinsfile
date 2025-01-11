@@ -8,12 +8,12 @@ pipeline {
     }
    stage('Install Dependencies') {
      steps {
-       bat 'python -m pip install bandit'
+       bat 'pip install bandit'
      }
    }
    stage('SAST Analysis') {
      steps {
-       bat 'python -m bandit -f xml -o bandit-output.json -r . || exit 0'
+       bat 'bandit -f xml -o bandit-output.json -r . || exit 0'
        recordIssues tools: [genericIssues(parser: 'JSON', pattern: 'bandit-output.json')]
      }
    }
