@@ -14,7 +14,7 @@ pipeline {
    stage('SAST Analysis') {
      steps {
        sh 'python3 -m bandit -f xml -o bandit-output.xml -r . || true'
-       recordIssues tools: [bandit(pattern: 'bandit-output.xml')]
+       recordIssues tools: [sarif(pattern: 'bandit-output.xml')]
      }
    }
   }
